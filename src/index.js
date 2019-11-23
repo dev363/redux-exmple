@@ -5,14 +5,21 @@ import './index.css';
 
 import {combineReducers, createStore} from 'redux'
 
+// Reducers
 function productReducer(state=[], action){
 
 	return state;
 }
 
-function userReducer(state="", action){
+function userReducer(state="", {type, payload}){
 
-	return state;
+	switch(type){
+		case 'changeUser':
+			return payload.name
+		default:
+			return state;
+	}
+
 }
 
 const allReducer= combineReducers({
@@ -20,19 +27,30 @@ const allReducer= combineReducers({
 	user:userReducer
 })
 
-const action={
-	type:"changeState",
+// Actions
+
+const updateUserAction={
+	type:"changeUser",
 	payload:{
-		newState:"new State"
+		name:"John deo"
 	}
 }
 
 
 
-const store= createStore(allReducer);
+// Store
+const store= createStore(allReducer,{
+	product:[{name:"i phone"}],
+	user:"Michel"
+},
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+);
+
+// Dispatchers
 
 console.log(store.getState())
-store.dispatch(action)
+store.dispatch(updateUserAction)
 console.log(store.getState())
 
 ReactDOM.render(
