@@ -3,49 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 
-import {combineReducers, createStore} from 'redux'
-
-// Reducers
-function productReducer(state=[], action){
-
-	return state;
-}
-
-function userReducer(state="", {type, payload}){
-
-	switch(type){
-		case 'changeUser':
-			return payload.name
-		default:
-			return state;
-	}
-
-}
-
-const allReducer= combineReducers({
-	product:productReducer,
-	user:userReducer
-})
+import {Provider} from "react-redux"
 
 // Actions
-
-const updateUserAction={
-	type:"changeUser",
-	payload:{
-		name:"John deo"
-	}
-}
-
-
+import updateUserAction from "./actions/userAction"
 
 // Store
-const store= createStore(allReducer,{
-	product:[{name:"i phone"}],
-	user:"Michel"
-},
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+import store from "./store"
 
-);
 
 // Dispatchers
 
@@ -54,6 +19,6 @@ store.dispatch(updateUserAction)
 console.log(store.getState())
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}><App /> </Provider>,
   document.getElementById('root')
 );
