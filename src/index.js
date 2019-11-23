@@ -3,15 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 
-import {createStore} from 'redux'
+import {combineReducers, createStore} from 'redux'
 
-function reducer(state, action){
-	console.log(state, action)
-	if(action.type==="changeState"){
-		return action.payload.newState
-	}
-	return "_state_";
+function productReducer(state=[], action){
+
+	return state;
 }
+
+function userReducer(state="", action){
+
+	return state;
+}
+
+const allReducer= combineReducers({
+	product:productReducer,
+	user:userReducer
+})
 
 const action={
 	type:"changeState",
@@ -22,7 +29,7 @@ const action={
 
 
 
-const store= createStore(reducer);
+const store= createStore(allReducer);
 
 console.log(store.getState())
 store.dispatch(action)
