@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import {connect} from 'react-redux'
+import {  bindActionCreators} from 'redux'
 
 import {updateUser} from "./actions/userAction"
 
@@ -30,12 +31,18 @@ class App extends Component {
   }
 }
 
-const mapStateToProps=(state)=>({
-  user: state.user,
-  product: state.product
-})
+const mapStateToProps=(state,props)=>{
+  console.log(state)
+  console.log(props)
+  return {
+    user: state.user,
+    product: state.product
+  }
+}
 
-const mapDispatchToProps={
-  onUpdateUser: updateUser
+const mapDispatchToProps=(dispatch, props)=>{
+  return bindActionCreators({
+    onUpdateUser: updateUser
+  },dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
