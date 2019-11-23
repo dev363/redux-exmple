@@ -14,9 +14,7 @@ import store from "./store"
 
 // Dispatchers
 
-console.log(store.getState())
-store.dispatch(updateUserAction)
-console.log(store.getState())
+
 
 ReactDOM.render(
   <Provider store={store}><App /> </Provider>,

@@ -1,9 +1,10 @@
+export const UPDATE_USER = "user:updateUser"
 
-const updateUserAction={
-	type:"changeUser",
-	payload:{
-		name:"John deo"
+export function updateUser(newUser){
+	return {
+		type:UPDATE_USER,
+		payload:{
+			name:newUser
+		}
 	}
 }
-
-export default updateUserAction
